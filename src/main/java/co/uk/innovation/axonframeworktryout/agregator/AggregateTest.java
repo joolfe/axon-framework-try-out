@@ -25,7 +25,7 @@ public class AggregateTest {
 
     @CommandHandler
     public AggregateTest(CreateCmd cmd) {
-        System.out.println("CreateCmd arrive");
+        System.out.println("CreateCmd arrive "+cmd);
         apply(AggregatorCreatedEvt.builder().id(cmd.getId()).text(cmd.getText()).build());
     }
 

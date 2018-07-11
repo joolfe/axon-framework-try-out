@@ -32,7 +32,7 @@ public class CommandAndGetAgregateTests {
     private CommandGateway commandGateway;
 
     @Autowired
-    private EventStore store;
+    private EventSourcingRepository<AggregateTest> store;
 
     @Test
     public void returnObjectComand() {
@@ -48,11 +48,15 @@ public class CommandAndGetAgregateTests {
         System.out.println(test);
 
         */
+        // AggregateTest test = store.load(id).getWrappedAggregate();
+
+                /*
         DomainEventStream eventStream = store.readEvents(id);
         while ( eventStream.hasNext() ){
             DomainEventMessage devm = eventStream.next();
             System.out.println("Typo " + devm.getType());
         }
+        */
 
     }
 

@@ -38,6 +38,7 @@ public class CreateComandsTests {
 		Assert.assertEquals(id, returnedId);
 	}
 
+
 	@Test
 	public void futureSendCreateComand() throws ExecutionException, InterruptedException {
 
@@ -86,6 +87,7 @@ public class CreateComandsTests {
 	}
 
 
+
 	@Test
 	public void sendAndWaitTimeoutCreateComand() {
 
@@ -96,5 +98,22 @@ public class CreateComandsTests {
 		Assert.assertEquals(id, returnedId);
 
 	}
+
+
+
+	@Test
+	public void shouldFailIfCreateTwoTimes() {
+
+		String id = UUID.randomUUID().toString();
+		CreateCmd cmd = CreateCmd.builder().id(id).text("MyText").build();
+		String returnedId = commandGateway.sendAndWait(cmd);
+
+		Assert.assertEquals(id, returnedId);
+
+		CreateCmd cmd2 = CreateCmd.builder().id(id).text("MyText2").build();
+		String otherId = commandGateway.sendAndWait(cmd2);
+
+	}
+
 
 }
